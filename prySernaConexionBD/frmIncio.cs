@@ -16,5 +16,11 @@ namespace prySernaConexionBD
         {
             InitializeComponent();
         }
+        clsConexion conexion = new clsConexion();
+        private void frmIncio_Load(object sender, EventArgs e)
+        {
+           
+            conexion.MostrarDatos(dgvMostrar);
+        }
     }
 }

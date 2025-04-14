@@ -59,6 +59,7 @@
             this.Controls.Add(this.btnMostrar);
             this.Name = "frmIncio";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmIncio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostrar)).EndInit();
             this.ResumeLayout(false);
 

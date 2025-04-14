@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -41,5 +42,42 @@ namespace prySernaConexionBD
             }
 
         }
+
+        public void MostrarDatos(DataGridView dgv)
+        {
+            try
+            {
+                /* conexionBaseDatos = new SqlConnection(cadenaConexion);
+                nombreBaseDeDatos = conexionBaseDatos.Database;
+                conexionBaseDatos.Open(); */
+
+                ConectarBD(); //<---- Invocando a este metodo se ejecuta exactamente lo mismo que esta arriba
+
+                string query = "SELECT * FROM Contactos";
+                comandoBaseDatos = new SqlCommand(query, coneccionBaseDatos);
+
+                //Crear un DataTable
+                DataTable productos = new DataTable();
+
+                //Llenar el DataTable
+                using (SqlDataReader reader = comandoBaseDatos.ExecuteReader())
+                {
+                    productos.Load(reader);
+                }
+                //Mostrar en grilla
+                dgv.DataSource = productos;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Tiene un errorcito - " + error.Message);
+            }
+            finally
+            {
+                coneccionBaseDatos.Close();
+            }
+        }
+
+
+
     }
 }
